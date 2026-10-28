@@ -67,15 +67,15 @@ for ref,item in C.items():
   assert re.match(r'^[A-Za-z0-9_]+$',net)
   nets[net].append((ref,pin))
 with (root/'PIN_NET_CONNECTIONS.csv').open('w',newline='') as f:
- w=csv.writer(f); w.writerow(['ref','part','physical_pin','net','value','footprint','status','notes'])
+ w=csv.writer(f,lineterminator='\n'); w.writerow(['ref','part','physical_pin','net','value','footprint','status','notes'])
  for ref,i in C.items():
   for p,n in sorted(i['pins'].items(),key=lambda a:int(a[0])):
    w.writerow([ref,ref,int(p),n,i['value'],i['footprint'],i['state'],i['note']])
 with (root/'NET_SUMMARY.csv').open('w',newline='') as f:
- w=csv.writer(f);w.writerow(['net','connections','node_count'])
+ w=csv.writer(f,lineterminator='\n');w.writerow(['net','connections','node_count'])
  for net,pins in sorted(nets.items()):w.writerow([net,'; '.join(ref+':'+pin for ref,pin in pins),len(pins)])
 with (root/'COMPONENTS.csv').open('w',newline='') as f:
- w=csv.writer(f);w.writerow(['reference','value','footprint_candidate','status','engineering_note'])
+ w=csv.writer(f,lineterminator='\n');w.writerow(['reference','value','footprint_candidate','status','engineering_note'])
  for ref,i in C.items():w.writerow([ref,i['value'],i['footprint'],i['state'],i['note']])
 # Kicad-style s-expression netlist (draft; KiCad not installed here)
 def esc(s):return '"'+str(s).replace('\\','\\\\').replace('"','\\"')+'"'
