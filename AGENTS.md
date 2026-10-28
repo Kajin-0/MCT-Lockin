@@ -1,6 +1,14 @@
 # AGENTS.md — Full project context and agent handoff
 Last authored: 2026-10-27. Repository: https://github.com/Kajin-0/MCT-Lockin
 
+
+## 2026-10-28 milestone: native KiCad capture generated (not ERC-verified)
+- New `hardware/rev_a/MCT_LIA_Mini_RevA_capture.kicad_sch`: self-contained, native KiCad schematic capture with 49 generic symbol boxes and all 146 source pin-to-net mappings. Treat as a **pin-mapping handoff**, not electrically qualified design. Generic symbols have passive pins; replace with vendor-exact symbols and correct pin electrical types before trusting ERC.
+- New `hardware/rev_a/ELECTRICAL_AUDIT.md`: explicit critical issues and command-level verification protocol. **Read it before making any layout or bias circuitry changes.**
+- Main technical risks: OPA1612 input bias x 47 kΩ return x ~201 gain may saturate; inadequate ADC Nyquist anti-alias for 48 kSPS; provisional asymmetrically driven PCM1804 input/VCOM; no onboard protected bias or power supply; unqualified I/O protection/footprints or STM32 carrier mapping.
+- On 2026-10-28 connected Ubuntu VPS was online, but `kicad-cli` not installed and remote terminal rejected installation commands. **No KiCad ERC, DRC, official netlist export, SPICE, or bench proof has been run.** Prefer authorized KiCad installation or CI before advancing.
+- Next agent: first independently open/parse the native schematic, run netlist export and pin tuple diff, replace generic symbol capture with exact manufacturer library symbols, then resolve analog issues. Do not order a board or connect a detector.
+
 ## Agent startup protocol (mandatory)
 1. Read this file completely, then README.md, hardware/mct-reva/README.md and hardware/mct-reva/VALIDATION.md.
 2. Inspect source-of-truth `hardware/mct-reva/MCT_LIA_Mini_RevA.json`, `build_netlist.py`, `PIN_NET_CONNECTIONS.csv`, and `MCT_LIA_Mini_RevA.net`. Do not infer full connectivity from prose.
