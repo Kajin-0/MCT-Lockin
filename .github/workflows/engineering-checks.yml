@@ -1,0 +1,38 @@
+name: Draft engineering artifact consistency
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-source:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate MCT Rev A structural netlist
+        working-directory: hardware/mct-reva
+        run: python validate.py
+      - name: Run preliminary noise model
+        working-directory: hardware/mct-reva
+        run: python noise_estimate.py
+      - name: Regenerate source artifacts and check reproducibility
+        working-directory: hardware/mct-reva
+        run: |
+          python build_netlist.py
+          git diff --exit-code --             COMPONENTS.csv MCT_LIA_Mini_RevA.net NET_SUMMARY.csv PIN_NET_CONNECTIONS.csv
+      - name: Verify Python syntax
+        run: |
+          python -m py_compile hardware/mct-reva/*.py
+          python -m py_compile hardware/legacy-general-lockin/*.py
+
+# NOTE: Passing this workflow does NOT establish electrical correctness,
+# noise performance, KiCad ERC, component footprint integrity,
+# detector protection, thermal compliance, or fabrication readiness.
