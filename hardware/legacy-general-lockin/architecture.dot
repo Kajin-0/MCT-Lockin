@@ -1,0 +1,27 @@
+digraph LockIn {
+  graph [rankdir=LR, bgcolor="white", pad="0.22", nodesep="0.34", ranksep="0.5", fontname="Arial", fontsize=16, label="Rev A — low-cost lock-in amplifier (functional architecture)", labelloc="t"];
+  node [shape=box, style="rounded,filled", fillcolor="#f2f6fb", color="#496887", penwidth=1.2, fontname="Arial", fontsize=12, margin="0.16,0.1"];
+  edge [color="#536b87", arrowsize=0.7, penwidth=1.2];
+  source [label="Signal BNC\n50 Ω source"];
+  term [label="Optional\n49.9 Ω termination"];
+  hp [label="Input protection\nAC coupling: 10 µF / 1 MΩ"];
+  amp [label="OPA1656 A\nGain ×1 / ×11 / ×101"];
+  aa [label="Passive AA filter\n47Ω/10nF ×2"];
+  adc [label="STM32G474 ADC\n12 bit, target 1 MSPS"];
+  dsp [label="Coherent DSP\nI/Q + 10 s averaging"];
+  host [label="ST-LINK USB serial\nLab PC / Python"];
+  source -> hp -> amp -> aa -> adc -> dsp -> host;
+  source -> term [style=dashed, label="JP1", fontsize=10];
+  bias [label="+3.3 V divider + RC\nOPA1656 B VBIAS=1.65 V", fillcolor="#f5f0e6"];
+  bias -> amp [label="midpoint",fontsize=10];
+  ext [label="External TTL BNC\n0–3.3 V", fillcolor="#eef7f1"];
+  int [label="Internal TTL BNC\n>10 kΩ load", fillcolor="#eef7f1"];
+  timer [label="Timer capture /\nphase-locked NCO", fillcolor="#eef7f1"];
+  ext -> timer -> dsp;
+  timer -> int [style=dashed, label="timer output"];
+  power [label="USB 5 V\nferrite + decoupling", fillcolor="#f5f0e6"];
+  power -> amp [style=dashed];
+  {rank=same; source; ext; power;}
+  {rank=same; amp; bias;}
+  {rank=same; adc; timer;}
+}

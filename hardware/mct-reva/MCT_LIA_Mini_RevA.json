@@ -1,0 +1,1205 @@
+{
+  "revision": "Rev A capture draft",
+  "components": {
+    "J1": {
+      "value": "MCT_KELVIN_4WAY",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical",
+      "pins": {
+        "1": "BIAS_FORCE_P",
+        "2": "AGND",
+        "3": "DET_SENSE_P",
+        "4": "DET_SENSE_N"
+      },
+      "note": "Physical connector / footprint unselected; external Kelvin wiring joins force and sense at detector",
+      "state": "boundary"
+    },
+    "J2": {
+      "value": "EXTERNAL_CURRENT_LIMITED_BIAS",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "pins": {
+        "1": "BIAS_FORCE_P",
+        "2": "AGND"
+      },
+      "note": "External 0..3V supply MUST have independent <=50mA limit; no protection on board",
+      "state": "boundary"
+    },
+    "R1": {
+      "value": "22R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "DET_SENSE_P",
+        "2": "INPUT_PROTECTED"
+      },
+      "note": "Source series protection; contributes ~0.60 nV/sqrt(Hz) at 300K",
+      "state": "prototype"
+    },
+    "R2": {
+      "value": "0R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "DET_SENSE_N",
+        "2": "AGND"
+      },
+      "note": "Sense return star / Kelvin link, layout critical",
+      "state": "prototype"
+    },
+    "C1": {
+      "value": "4.7uF_10V_X7R",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pins": {
+        "1": "INPUT_PROTECTED",
+        "2": "AMP_AC_IN"
+      },
+      "note": "Effective DC-bias-adjusted capacitance must be checked; X7R MLCC nonlinear with bias",
+      "state": "prototype"
+    },
+    "R3": {
+      "value": "47k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "AMP_AC_IN",
+        "2": "AGND"
+      },
+      "note": "DC bias return. With 4.7uF nominal, high pass ~0.72 Hz. High input resistance vs 200R source, but bipolar opamp DC input bias can saturate on high gain; verify at worst case",
+      "state": "prototype"
+    },
+    "U1": {
+      "value": "OPA1612AID",
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "pins": {
+        "1": "AMP_OUT",
+        "2": "AFE_FB",
+        "3": "AMP_AC_IN",
+        "4": "AVEE_N5",
+        "5": "ADC_VCOML",
+        "6": "ADC_B_SUM",
+        "7": "ADC_B_OUT",
+        "8": "AVDD_P5"
+      },
+      "note": "SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)",
+      "state": "prototype"
+    },
+    "R4": {
+      "value": "1k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "AMP_OUT",
+        "2": "AFE_FB"
+      },
+      "note": "Non-inverting first stage feedback",
+      "state": "prototype"
+    },
+    "R5": {
+      "value": "20R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "AFE_FB",
+        "2": "AGND"
+      },
+      "note": "Fixed gain G=51",
+      "state": "prototype"
+    },
+    "R6": {
+      "value": "6.65R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "AFE_FB",
+        "2": "GAIN201_SWITCH"
+      },
+      "note": "When switch closed R5||R6=>G~201.4",
+      "state": "prototype"
+    },
+    "SW1": {
+      "value": "GAIN_SELECT_NO",
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Open",
+      "pins": {
+        "1": "GAIN201_SWITCH",
+        "2": "AGND"
+      },
+      "note": "Solder jumper closed selects G~201; open selects G51; physical design review required",
+      "state": "prototype"
+    },
+    "R7": {
+      "value": "330R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "AMP_OUT",
+        "2": "FILTER_STAGE1"
+      },
+      "note": "Anti-alias stage 1",
+      "state": "prototype"
+    },
+    "C2": {
+      "value": "15nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "FILTER_STAGE1",
+        "2": "AGND"
+      },
+      "note": "Pole ~32.2 kHz",
+      "state": "prototype"
+    },
+    "C3": {
+      "value": "10uF_10V_X7R",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pins": {
+        "1": "FILTER_STAGE1",
+        "2": "ADC_AC_COUPLED"
+      },
+      "note": "AC-couple to inverting ADC level shifter, at 2.5V common mode",
+      "state": "prototype"
+    },
+    "R8": {
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "ADC_AC_COUPLED",
+        "2": "ADC_B_SUM"
+      },
+      "note": "Inverting driver Rin",
+      "state": "prototype"
+    },
+    "R9": {
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "ADC_B_SUM",
+        "2": "ADC_B_OUT"
+      },
+      "note": "Inverting driver gain ~-1",
+      "state": "prototype"
+    },
+    "C4": {
+      "value": "470pF_C0G",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "ADC_B_SUM",
+        "2": "ADC_B_OUT"
+      },
+      "note": "Second analog low pass pole ~33.9 kHz",
+      "state": "prototype"
+    },
+    "R10": {
+      "value": "47R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "ADC_B_OUT",
+        "2": "ADC_LMINUS"
+      },
+      "note": "PCM1804 input drive resistor",
+      "state": "prototype"
+    },
+    "R11": {
+      "value": "47R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "ADC_VCOML",
+        "2": "ADC_LPLUS"
+      },
+      "note": "PCM1804 L+ input held to VCOML (single-sided differential ADC drive)",
+      "state": "prototype"
+    },
+    "C5": {
+      "value": "10nF_C0G",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "ADC_LPLUS",
+        "2": "ADC_LMINUS"
+      },
+      "note": "ADC differential charge kickback filter; verify against TI input drive model",
+      "state": "prototype"
+    },
+    "R12": {
+      "value": "47R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "ADC_VCOMR",
+        "2": "ADC_RPLUS"
+      },
+      "note": "Quiet channel +, noise monitor",
+      "state": "prototype"
+    },
+    "R13": {
+      "value": "47R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "ADC_VCOMR",
+        "2": "ADC_RMINUS"
+      },
+      "note": "Quiet channel -, noise monitor",
+      "state": "prototype"
+    },
+    "C6": {
+      "value": "10nF_C0G",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "ADC_RPLUS",
+        "2": "ADC_RMINUS"
+      },
+      "note": "",
+      "state": "prototype"
+    },
+    "U2": {
+      "value": "PCM1804DB",
+      "footprint": "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm",
+      "pins": {
+        "1": "ADC_VREFL",
+        "2": "AGND",
+        "3": "ADC_VCOML",
+        "4": "ADC_LPLUS",
+        "5": "ADC_LMINUS",
+        "6": "D3V3",
+        "7": "DGND",
+        "8": "DGND",
+        "9": "D3V3",
+        "10": "D3V3",
+        "11": "DGND",
+        "12": "DGND",
+        "13": "DGND",
+        "14": "D3V3",
+        "15": "MCU_I2S_DATA",
+        "16": "MCU_I2S_BCK",
+        "17": "MCU_I2S_LRCK",
+        "18": "ADC_MCLK",
+        "19": "MCU_ADC_RESET",
+        "20": "ADC_OVFR",
+        "21": "ADC_OVFL",
+        "22": "AVDD_ADC5",
+        "23": "AGND",
+        "24": "ADC_RMINUS",
+        "25": "ADC_RPLUS",
+        "26": "ADC_VCOMR",
+        "27": "AGND",
+        "28": "ADC_VREFR"
+      },
+      "note": "48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0",
+      "state": "prototype"
+    },
+    "C7": {
+      "value": "10uF_10V",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pins": {
+        "1": "ADC_VREFL",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C8": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "ADC_VREFL",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C9": {
+      "value": "10uF_10V",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pins": {
+        "1": "ADC_VREFR",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C10": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "ADC_VREFR",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C11": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "ADC_VCOML",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C12": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "ADC_VCOMR",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C13": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "AVDD_P5",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C14": {
+      "value": "10uF",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pins": {
+        "1": "AVDD_P5",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C15": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "AVEE_N5",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C16": {
+      "value": "10uF",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pins": {
+        "1": "AVEE_N5",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C17": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "AVDD_ADC5",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C18": {
+      "value": "10uF",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pins": {
+        "1": "AVDD_ADC5",
+        "2": "AGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C19": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "D3V3",
+        "2": "DGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "C20": {
+      "value": "10uF",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pins": {
+        "1": "D3V3",
+        "2": "DGND"
+      },
+      "note": "Place next to IC; PCM1804 analog and digital grounds must have controlled connection",
+      "state": "prototype"
+    },
+    "R14": {
+      "value": "0R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "AGND",
+        "2": "DGND"
+      },
+      "note": "Single star point provisional; footprint placement controls actual return loop",
+      "state": "prototype"
+    },
+    "U3": {
+      "value": "ASEM1-12.288MHZ-L",
+      "footprint": "Oscillator:Oscillator_SMD_Abracon_ASEM1-4Pin_3.2x2.5mm",
+      "pins": {
+        "1": "D3V3",
+        "2": "DGND",
+        "3": "CLK_SOURCE",
+        "4": "D3V3"
+      },
+      "note": "Pin map 1=OE 2=GND 3=OUT 4=VDD; exact library footprint to be verified",
+      "state": "footprint-review"
+    },
+    "R15": {
+      "value": "33R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "CLK_SOURCE",
+        "2": "ADC_MCLK"
+      },
+      "note": "MCLK series damping, PCB layout required",
+      "state": "prototype"
+    },
+    "C21": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": {
+        "1": "D3V3",
+        "2": "DGND"
+      },
+      "note": "Dedicated near oscillator",
+      "state": "prototype"
+    },
+    "R16": {
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "MCU_ADC_RESET",
+        "2": "DGND"
+      },
+      "note": "PCM1804 /RST held low during startup until firmware releases it",
+      "state": "prototype"
+    },
+    "J3": {
+      "value": "EXT_REF_TTL_3V3",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "pins": {
+        "1": "EXT_REF_CON",
+        "2": "AGND"
+      },
+      "note": "BNC connector footprint placeholder, TTL 0..3.3V, no analog sine",
+      "state": "placeholder"
+    },
+    "R17": {
+      "value": "1k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "EXT_REF_CON",
+        "2": "MCU_EXT_REF"
+      },
+      "note": "MCU digital capture input, pending clamp/ESD specification",
+      "state": "prototype"
+    },
+    "R18": {
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "MCU_EXT_REF",
+        "2": "DGND"
+      },
+      "note": "logic pull-down",
+      "state": "prototype"
+    },
+    "J4": {
+      "value": "INT_REF_TTL_3V3",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "pins": {
+        "1": "INT_REF_CON",
+        "2": "AGND"
+      },
+      "note": "BNC connector footprint placeholder, >=10k load only",
+      "state": "placeholder"
+    },
+    "R19": {
+      "value": "100R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": {
+        "1": "MCU_INT_REF",
+        "2": "INT_REF_CON"
+      },
+      "note": "3.3V MCU output series resistor; do not drive 50-ohm loads",
+      "state": "prototype"
+    },
+    "J5": {
+      "value": "MCU_AND_POWER_INTERFACE",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical",
+      "pins": {
+        "1": "AVDD_P5",
+        "2": "AVEE_N5",
+        "3": "AVDD_ADC5",
+        "4": "D3V3",
+        "5": "AGND",
+        "6": "DGND",
+        "7": "MCU_I2S_BCK",
+        "8": "MCU_I2S_LRCK",
+        "9": "MCU_I2S_DATA",
+        "10": "MCU_ADC_RESET",
+        "11": "MCU_EXT_REF",
+        "12": "MCU_INT_REF",
+        "13": "ADC_OVFL",
+        "14": "ADC_OVFR"
+      },
+      "note": "Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified",
+      "state": "boundary"
+    }
+  },
+  "nets": {
+    "BIAS_FORCE_P": [
+      [
+        "J1",
+        "1"
+      ],
+      [
+        "J2",
+        "1"
+      ]
+    ],
+    "AGND": [
+      [
+        "J1",
+        "2"
+      ],
+      [
+        "J2",
+        "2"
+      ],
+      [
+        "R2",
+        "2"
+      ],
+      [
+        "R3",
+        "2"
+      ],
+      [
+        "R5",
+        "2"
+      ],
+      [
+        "SW1",
+        "2"
+      ],
+      [
+        "C2",
+        "2"
+      ],
+      [
+        "U2",
+        "2"
+      ],
+      [
+        "U2",
+        "23"
+      ],
+      [
+        "U2",
+        "27"
+      ],
+      [
+        "C7",
+        "2"
+      ],
+      [
+        "C8",
+        "2"
+      ],
+      [
+        "C9",
+        "2"
+      ],
+      [
+        "C10",
+        "2"
+      ],
+      [
+        "C11",
+        "2"
+      ],
+      [
+        "C12",
+        "2"
+      ],
+      [
+        "C13",
+        "2"
+      ],
+      [
+        "C14",
+        "2"
+      ],
+      [
+        "C15",
+        "2"
+      ],
+      [
+        "C16",
+        "2"
+      ],
+      [
+        "C17",
+        "2"
+      ],
+      [
+        "C18",
+        "2"
+      ],
+      [
+        "R14",
+        "1"
+      ],
+      [
+        "J3",
+        "2"
+      ],
+      [
+        "J4",
+        "2"
+      ],
+      [
+        "J5",
+        "5"
+      ]
+    ],
+    "DET_SENSE_P": [
+      [
+        "J1",
+        "3"
+      ],
+      [
+        "R1",
+        "1"
+      ]
+    ],
+    "DET_SENSE_N": [
+      [
+        "J1",
+        "4"
+      ],
+      [
+        "R2",
+        "1"
+      ]
+    ],
+    "INPUT_PROTECTED": [
+      [
+        "R1",
+        "2"
+      ],
+      [
+        "C1",
+        "1"
+      ]
+    ],
+    "AMP_AC_IN": [
+      [
+        "C1",
+        "2"
+      ],
+      [
+        "R3",
+        "1"
+      ],
+      [
+        "U1",
+        "3"
+      ]
+    ],
+    "AMP_OUT": [
+      [
+        "U1",
+        "1"
+      ],
+      [
+        "R4",
+        "1"
+      ],
+      [
+        "R7",
+        "1"
+      ]
+    ],
+    "AFE_FB": [
+      [
+        "U1",
+        "2"
+      ],
+      [
+        "R4",
+        "2"
+      ],
+      [
+        "R5",
+        "1"
+      ],
+      [
+        "R6",
+        "1"
+      ]
+    ],
+    "AVEE_N5": [
+      [
+        "U1",
+        "4"
+      ],
+      [
+        "C15",
+        "1"
+      ],
+      [
+        "C16",
+        "1"
+      ],
+      [
+        "J5",
+        "2"
+      ]
+    ],
+    "ADC_VCOML": [
+      [
+        "U1",
+        "5"
+      ],
+      [
+        "R11",
+        "1"
+      ],
+      [
+        "U2",
+        "3"
+      ],
+      [
+        "C11",
+        "1"
+      ]
+    ],
+    "ADC_B_SUM": [
+      [
+        "U1",
+        "6"
+      ],
+      [
+        "R8",
+        "2"
+      ],
+      [
+        "R9",
+        "1"
+      ],
+      [
+        "C4",
+        "1"
+      ]
+    ],
+    "ADC_B_OUT": [
+      [
+        "U1",
+        "7"
+      ],
+      [
+        "R9",
+        "2"
+      ],
+      [
+        "C4",
+        "2"
+      ],
+      [
+        "R10",
+        "1"
+      ]
+    ],
+    "AVDD_P5": [
+      [
+        "U1",
+        "8"
+      ],
+      [
+        "C13",
+        "1"
+      ],
+      [
+        "C14",
+        "1"
+      ],
+      [
+        "J5",
+        "1"
+      ]
+    ],
+    "GAIN201_SWITCH": [
+      [
+        "R6",
+        "2"
+      ],
+      [
+        "SW1",
+        "1"
+      ]
+    ],
+    "FILTER_STAGE1": [
+      [
+        "R7",
+        "2"
+      ],
+      [
+        "C2",
+        "1"
+      ],
+      [
+        "C3",
+        "1"
+      ]
+    ],
+    "ADC_AC_COUPLED": [
+      [
+        "C3",
+        "2"
+      ],
+      [
+        "R8",
+        "1"
+      ]
+    ],
+    "ADC_LMINUS": [
+      [
+        "R10",
+        "2"
+      ],
+      [
+        "C5",
+        "2"
+      ],
+      [
+        "U2",
+        "5"
+      ]
+    ],
+    "ADC_LPLUS": [
+      [
+        "R11",
+        "2"
+      ],
+      [
+        "C5",
+        "1"
+      ],
+      [
+        "U2",
+        "4"
+      ]
+    ],
+    "ADC_VCOMR": [
+      [
+        "R12",
+        "1"
+      ],
+      [
+        "R13",
+        "1"
+      ],
+      [
+        "U2",
+        "26"
+      ],
+      [
+        "C12",
+        "1"
+      ]
+    ],
+    "ADC_RPLUS": [
+      [
+        "R12",
+        "2"
+      ],
+      [
+        "C6",
+        "1"
+      ],
+      [
+        "U2",
+        "25"
+      ]
+    ],
+    "ADC_RMINUS": [
+      [
+        "R13",
+        "2"
+      ],
+      [
+        "C6",
+        "2"
+      ],
+      [
+        "U2",
+        "24"
+      ]
+    ],
+    "ADC_VREFL": [
+      [
+        "U2",
+        "1"
+      ],
+      [
+        "C7",
+        "1"
+      ],
+      [
+        "C8",
+        "1"
+      ]
+    ],
+    "D3V3": [
+      [
+        "U2",
+        "6"
+      ],
+      [
+        "U2",
+        "9"
+      ],
+      [
+        "U2",
+        "10"
+      ],
+      [
+        "U2",
+        "14"
+      ],
+      [
+        "C19",
+        "1"
+      ],
+      [
+        "C20",
+        "1"
+      ],
+      [
+        "U3",
+        "1"
+      ],
+      [
+        "U3",
+        "4"
+      ],
+      [
+        "C21",
+        "1"
+      ],
+      [
+        "J5",
+        "4"
+      ]
+    ],
+    "DGND": [
+      [
+        "U2",
+        "7"
+      ],
+      [
+        "U2",
+        "8"
+      ],
+      [
+        "U2",
+        "11"
+      ],
+      [
+        "U2",
+        "12"
+      ],
+      [
+        "U2",
+        "13"
+      ],
+      [
+        "C19",
+        "2"
+      ],
+      [
+        "C20",
+        "2"
+      ],
+      [
+        "R14",
+        "2"
+      ],
+      [
+        "U3",
+        "2"
+      ],
+      [
+        "C21",
+        "2"
+      ],
+      [
+        "R16",
+        "2"
+      ],
+      [
+        "R18",
+        "2"
+      ],
+      [
+        "J5",
+        "6"
+      ]
+    ],
+    "MCU_I2S_DATA": [
+      [
+        "U2",
+        "15"
+      ],
+      [
+        "J5",
+        "9"
+      ]
+    ],
+    "MCU_I2S_BCK": [
+      [
+        "U2",
+        "16"
+      ],
+      [
+        "J5",
+        "7"
+      ]
+    ],
+    "MCU_I2S_LRCK": [
+      [
+        "U2",
+        "17"
+      ],
+      [
+        "J5",
+        "8"
+      ]
+    ],
+    "ADC_MCLK": [
+      [
+        "U2",
+        "18"
+      ],
+      [
+        "R15",
+        "2"
+      ]
+    ],
+    "MCU_ADC_RESET": [
+      [
+        "U2",
+        "19"
+      ],
+      [
+        "R16",
+        "1"
+      ],
+      [
+        "J5",
+        "10"
+      ]
+    ],
+    "ADC_OVFR": [
+      [
+        "U2",
+        "20"
+      ],
+      [
+        "J5",
+        "14"
+      ]
+    ],
+    "ADC_OVFL": [
+      [
+        "U2",
+        "21"
+      ],
+      [
+        "J5",
+        "13"
+      ]
+    ],
+    "AVDD_ADC5": [
+      [
+        "U2",
+        "22"
+      ],
+      [
+        "C17",
+        "1"
+      ],
+      [
+        "C18",
+        "1"
+      ],
+      [
+        "J5",
+        "3"
+      ]
+    ],
+    "ADC_VREFR": [
+      [
+        "U2",
+        "28"
+      ],
+      [
+        "C9",
+        "1"
+      ],
+      [
+        "C10",
+        "1"
+      ]
+    ],
+    "CLK_SOURCE": [
+      [
+        "U3",
+        "3"
+      ],
+      [
+        "R15",
+        "1"
+      ]
+    ],
+    "EXT_REF_CON": [
+      [
+        "J3",
+        "1"
+      ],
+      [
+        "R17",
+        "1"
+      ]
+    ],
+    "MCU_EXT_REF": [
+      [
+        "R17",
+        "2"
+      ],
+      [
+        "R18",
+        "1"
+      ],
+      [
+        "J5",
+        "11"
+      ]
+    ],
+    "INT_REF_CON": [
+      [
+        "J4",
+        "1"
+      ],
+      [
+        "R19",
+        "2"
+      ]
+    ],
+    "MCU_INT_REF": [
+      [
+        "R19",
+        "1"
+      ],
+      [
+        "J5",
+        "12"
+      ]
+    ]
+  }
+}

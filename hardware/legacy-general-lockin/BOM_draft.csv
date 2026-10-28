@@ -1,0 +1,35 @@
+Designator,Value,Proposed MPN,Footprint (provisional),Source notes / restrictions
+J1,SIGNAL_IN_BNC,,Connector_Coaxial:Amphenol_112404_Horizontal,BNC footprint is illustrative; verify actual connector mating and pad numbers
+R1,1k,,Resistor_SMD:R_0805_2012Metric,Input current limiting; noise contributor
+C1,10uF X7R 25V,,Capacitor_SMD:C_1210_3225Metric,Check effective capacitance under 1.65 V bias
+R2,49.9R,,Resistor_SMD:R_0805_2012Metric,
+JP1,OPTIONAL_50R_TERM,,Jumper:SolderJumper-2_P1.3mm_Open,OPEN default; closed -> 49.9ohm BNC termination
+R3,1M,,Resistor_SMD:R_0805_2012Metric,
+U1,OPA1656IDR,OPA1656IDR,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,A: gain 1/11/101. B: 1.65V midpoint buffer
+R4,10k 0.1%,,Resistor_SMD:R_0805_2012Metric,
+R5,100R 0.1%,,Resistor_SMD:R_0805_2012Metric,
+JP2,GAIN_101,,Jumper:SolderJumper-2_P1.3mm_Open,
+R6,1k 0.1%,,Resistor_SMD:R_0805_2012Metric,
+JP3,GAIN_11,,Jumper:SolderJumper-2_P1.3mm_Open,
+R7,47R,,Resistor_SMD:R_0805_2012Metric,
+C2,10nF C0G,,Capacitor_SMD:C_0805_2012Metric,
+R8,47R,,Resistor_SMD:R_0805_2012Metric,
+C3,10nF C0G,,Capacitor_SMD:C_0805_2012Metric,
+R9,330R,,Resistor_SMD:R_0805_2012Metric,
+D1,BAT54WS_A,,Diode_SMD:D_SOD-323,"D1 cathode=3V3 (pin1), anode=ADC_IN(pin2); verify clamp injection current and pad polarity"
+D2,BAT54WS_B,,Diode_SMD:D_SOD-323,"D2 cathode=ADC_IN(pin1), anode=AGND(pin2)"
+J2,NUCLEO_G474RE_IO,,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,Header-to-Nucleo mapping must be finalized in CubeMX/NUCLEO schematics
+J3,EXT_REF_TTL_BNC,,Connector_Coaxial:Amphenol_112404_Horizontal,0-3.3 V CMOS/TTL square wave only
+R10,1k,,Resistor_SMD:R_0805_2012Metric,
+R11,100k,,Resistor_SMD:R_0805_2012Metric,
+D3,BAT54WS_C,,Diode_SMD:D_SOD-323,
+D4,BAT54WS_D,,Diode_SMD:D_SOD-323,
+J4,INT_REF_TTL_BNC,,Connector_Coaxial:Amphenol_112404_Horizontal,3.3V logic output for high-impedance loads; NOT 50-ohm loaded 3.3 V source
+R12,100R,,Resistor_SMD:R_0805_2012Metric,
+FB1,600R@100MHz,,Inductor_SMD:L_0805_2012Metric,
+C4,10uF 10V,,Capacitor_SMD:C_1210_3225Metric,
+C5,100nF 25V,,Capacitor_SMD:C_0805_2012Metric,
+R13,10k,,Resistor_SMD:R_0805_2012Metric,
+R14,10k,,Resistor_SMD:R_0805_2012Metric,
+C6,47uF 6.3V,,Capacitor_SMD:C_1210_3225Metric,
+C7,100nF 25V,,Capacitor_SMD:C_0805_2012Metric,

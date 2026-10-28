@@ -1,0 +1,147 @@
+ref,part,physical_pin,net,value,footprint,status,notes
+J1,J1,1,BIAS_FORCE_P,MCT_KELVIN_4WAY,Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical,boundary,Physical connector / footprint unselected; external Kelvin wiring joins force and sense at detector
+J1,J1,2,AGND,MCT_KELVIN_4WAY,Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical,boundary,Physical connector / footprint unselected; external Kelvin wiring joins force and sense at detector
+J1,J1,3,DET_SENSE_P,MCT_KELVIN_4WAY,Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical,boundary,Physical connector / footprint unselected; external Kelvin wiring joins force and sense at detector
+J1,J1,4,DET_SENSE_N,MCT_KELVIN_4WAY,Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical,boundary,Physical connector / footprint unselected; external Kelvin wiring joins force and sense at detector
+J2,J2,1,BIAS_FORCE_P,EXTERNAL_CURRENT_LIMITED_BIAS,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,boundary,External 0..3V supply MUST have independent <=50mA limit; no protection on board
+J2,J2,2,AGND,EXTERNAL_CURRENT_LIMITED_BIAS,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,boundary,External 0..3V supply MUST have independent <=50mA limit; no protection on board
+R1,R1,1,DET_SENSE_P,22R,Resistor_SMD:R_0603_1608Metric,prototype,Source series protection; contributes ~0.60 nV/sqrt(Hz) at 300K
+R1,R1,2,INPUT_PROTECTED,22R,Resistor_SMD:R_0603_1608Metric,prototype,Source series protection; contributes ~0.60 nV/sqrt(Hz) at 300K
+R2,R2,1,DET_SENSE_N,0R,Resistor_SMD:R_0603_1608Metric,prototype,"Sense return star / Kelvin link, layout critical"
+R2,R2,2,AGND,0R,Resistor_SMD:R_0603_1608Metric,prototype,"Sense return star / Kelvin link, layout critical"
+C1,C1,1,INPUT_PROTECTED,4.7uF_10V_X7R,Capacitor_SMD:C_0805_2012Metric,prototype,Effective DC-bias-adjusted capacitance must be checked; X7R MLCC nonlinear with bias
+C1,C1,2,AMP_AC_IN,4.7uF_10V_X7R,Capacitor_SMD:C_0805_2012Metric,prototype,Effective DC-bias-adjusted capacitance must be checked; X7R MLCC nonlinear with bias
+R3,R3,1,AMP_AC_IN,47k,Resistor_SMD:R_0603_1608Metric,prototype,"DC bias return. With 4.7uF nominal, high pass ~0.72 Hz. High input resistance vs 200R source, but bipolar opamp DC input bias can saturate on high gain; verify at worst case"
+R3,R3,2,AGND,47k,Resistor_SMD:R_0603_1608Metric,prototype,"DC bias return. With 4.7uF nominal, high pass ~0.72 Hz. High input resistance vs 200R source, but bipolar opamp DC input bias can saturate on high gain; verify at worst case"
+U1,U1,1,AMP_OUT,OPA1612AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,prototype,SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)
+U1,U1,2,AFE_FB,OPA1612AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,prototype,SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)
+U1,U1,3,AMP_AC_IN,OPA1612AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,prototype,SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)
+U1,U1,4,AVEE_N5,OPA1612AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,prototype,SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)
+U1,U1,5,ADC_VCOML,OPA1612AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,prototype,SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)
+U1,U1,6,ADC_B_SUM,OPA1612AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,prototype,SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)
+U1,U1,7,ADC_B_OUT,OPA1612AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,prototype,SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)
+U1,U1,8,AVDD_P5,OPA1612AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,prototype,SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)
+R4,R4,1,AMP_OUT,1k,Resistor_SMD:R_0603_1608Metric,prototype,Non-inverting first stage feedback
+R4,R4,2,AFE_FB,1k,Resistor_SMD:R_0603_1608Metric,prototype,Non-inverting first stage feedback
+R5,R5,1,AFE_FB,20R,Resistor_SMD:R_0603_1608Metric,prototype,Fixed gain G=51
+R5,R5,2,AGND,20R,Resistor_SMD:R_0603_1608Metric,prototype,Fixed gain G=51
+R6,R6,1,AFE_FB,6.65R,Resistor_SMD:R_0603_1608Metric,prototype,When switch closed R5||R6=>G~201.4
+R6,R6,2,GAIN201_SWITCH,6.65R,Resistor_SMD:R_0603_1608Metric,prototype,When switch closed R5||R6=>G~201.4
+SW1,SW1,1,GAIN201_SWITCH,GAIN_SELECT_NO,Jumper:SolderJumper-2_P1.3mm_Open,prototype,Solder jumper closed selects G~201; open selects G51; physical design review required
+SW1,SW1,2,AGND,GAIN_SELECT_NO,Jumper:SolderJumper-2_P1.3mm_Open,prototype,Solder jumper closed selects G~201; open selects G51; physical design review required
+R7,R7,1,AMP_OUT,330R,Resistor_SMD:R_0603_1608Metric,prototype,Anti-alias stage 1
+R7,R7,2,FILTER_STAGE1,330R,Resistor_SMD:R_0603_1608Metric,prototype,Anti-alias stage 1
+C2,C2,1,FILTER_STAGE1,15nF,Capacitor_SMD:C_0603_1608Metric,prototype,Pole ~32.2 kHz
+C2,C2,2,AGND,15nF,Capacitor_SMD:C_0603_1608Metric,prototype,Pole ~32.2 kHz
+C3,C3,1,FILTER_STAGE1,10uF_10V_X7R,Capacitor_SMD:C_0805_2012Metric,prototype,"AC-couple to inverting ADC level shifter, at 2.5V common mode"
+C3,C3,2,ADC_AC_COUPLED,10uF_10V_X7R,Capacitor_SMD:C_0805_2012Metric,prototype,"AC-couple to inverting ADC level shifter, at 2.5V common mode"
+R8,R8,1,ADC_AC_COUPLED,10k,Resistor_SMD:R_0603_1608Metric,prototype,Inverting driver Rin
+R8,R8,2,ADC_B_SUM,10k,Resistor_SMD:R_0603_1608Metric,prototype,Inverting driver Rin
+R9,R9,1,ADC_B_SUM,10k,Resistor_SMD:R_0603_1608Metric,prototype,Inverting driver gain ~-1
+R9,R9,2,ADC_B_OUT,10k,Resistor_SMD:R_0603_1608Metric,prototype,Inverting driver gain ~-1
+C4,C4,1,ADC_B_SUM,470pF_C0G,Capacitor_SMD:C_0603_1608Metric,prototype,Second analog low pass pole ~33.9 kHz
+C4,C4,2,ADC_B_OUT,470pF_C0G,Capacitor_SMD:C_0603_1608Metric,prototype,Second analog low pass pole ~33.9 kHz
+R10,R10,1,ADC_B_OUT,47R,Resistor_SMD:R_0603_1608Metric,prototype,PCM1804 input drive resistor
+R10,R10,2,ADC_LMINUS,47R,Resistor_SMD:R_0603_1608Metric,prototype,PCM1804 input drive resistor
+R11,R11,1,ADC_VCOML,47R,Resistor_SMD:R_0603_1608Metric,prototype,PCM1804 L+ input held to VCOML (single-sided differential ADC drive)
+R11,R11,2,ADC_LPLUS,47R,Resistor_SMD:R_0603_1608Metric,prototype,PCM1804 L+ input held to VCOML (single-sided differential ADC drive)
+C5,C5,1,ADC_LPLUS,10nF_C0G,Capacitor_SMD:C_0603_1608Metric,prototype,ADC differential charge kickback filter; verify against TI input drive model
+C5,C5,2,ADC_LMINUS,10nF_C0G,Capacitor_SMD:C_0603_1608Metric,prototype,ADC differential charge kickback filter; verify against TI input drive model
+R12,R12,1,ADC_VCOMR,47R,Resistor_SMD:R_0603_1608Metric,prototype,"Quiet channel +, noise monitor"
+R12,R12,2,ADC_RPLUS,47R,Resistor_SMD:R_0603_1608Metric,prototype,"Quiet channel +, noise monitor"
+R13,R13,1,ADC_VCOMR,47R,Resistor_SMD:R_0603_1608Metric,prototype,"Quiet channel -, noise monitor"
+R13,R13,2,ADC_RMINUS,47R,Resistor_SMD:R_0603_1608Metric,prototype,"Quiet channel -, noise monitor"
+C6,C6,1,ADC_RPLUS,10nF_C0G,Capacitor_SMD:C_0603_1608Metric,prototype,
+C6,C6,2,ADC_RMINUS,10nF_C0G,Capacitor_SMD:C_0603_1608Metric,prototype,
+U2,U2,1,ADC_VREFL,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,2,AGND,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,3,ADC_VCOML,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,4,ADC_LPLUS,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,5,ADC_LMINUS,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,6,D3V3,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,7,DGND,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,8,DGND,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,9,D3V3,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,10,D3V3,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,11,DGND,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,12,DGND,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,13,DGND,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,14,D3V3,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,15,MCU_I2S_DATA,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,16,MCU_I2S_BCK,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,17,MCU_I2S_LRCK,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,18,ADC_MCLK,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,19,MCU_ADC_RESET,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,20,ADC_OVFR,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,21,ADC_OVFL,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,22,AVDD_ADC5,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,23,AGND,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,24,ADC_RMINUS,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,25,ADC_RPLUS,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,26,ADC_VCOMR,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,27,AGND,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+U2,U2,28,ADC_VREFR,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+C7,C7,1,ADC_VREFL,10uF_10V,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C7,C7,2,AGND,10uF_10V,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C8,C8,1,ADC_VREFL,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C8,C8,2,AGND,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C9,C9,1,ADC_VREFR,10uF_10V,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C9,C9,2,AGND,10uF_10V,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C10,C10,1,ADC_VREFR,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C10,C10,2,AGND,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C11,C11,1,ADC_VCOML,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C11,C11,2,AGND,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C12,C12,1,ADC_VCOMR,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C12,C12,2,AGND,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C13,C13,1,AVDD_P5,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C13,C13,2,AGND,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C14,C14,1,AVDD_P5,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C14,C14,2,AGND,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C15,C15,1,AVEE_N5,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C15,C15,2,AGND,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C16,C16,1,AVEE_N5,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C16,C16,2,AGND,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C17,C17,1,AVDD_ADC5,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C17,C17,2,AGND,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C18,C18,1,AVDD_ADC5,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C18,C18,2,AGND,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C19,C19,1,D3V3,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C19,C19,2,DGND,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C20,C20,1,D3V3,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C20,C20,2,DGND,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+R14,R14,1,AGND,0R,Resistor_SMD:R_0603_1608Metric,prototype,Single star point provisional; footprint placement controls actual return loop
+R14,R14,2,DGND,0R,Resistor_SMD:R_0603_1608Metric,prototype,Single star point provisional; footprint placement controls actual return loop
+U3,U3,1,D3V3,ASEM1-12.288MHZ-L,Oscillator:Oscillator_SMD_Abracon_ASEM1-4Pin_3.2x2.5mm,footprint-review,Pin map 1=OE 2=GND 3=OUT 4=VDD; exact library footprint to be verified
+U3,U3,2,DGND,ASEM1-12.288MHZ-L,Oscillator:Oscillator_SMD_Abracon_ASEM1-4Pin_3.2x2.5mm,footprint-review,Pin map 1=OE 2=GND 3=OUT 4=VDD; exact library footprint to be verified
+U3,U3,3,CLK_SOURCE,ASEM1-12.288MHZ-L,Oscillator:Oscillator_SMD_Abracon_ASEM1-4Pin_3.2x2.5mm,footprint-review,Pin map 1=OE 2=GND 3=OUT 4=VDD; exact library footprint to be verified
+U3,U3,4,D3V3,ASEM1-12.288MHZ-L,Oscillator:Oscillator_SMD_Abracon_ASEM1-4Pin_3.2x2.5mm,footprint-review,Pin map 1=OE 2=GND 3=OUT 4=VDD; exact library footprint to be verified
+R15,R15,1,CLK_SOURCE,33R,Resistor_SMD:R_0603_1608Metric,prototype,"MCLK series damping, PCB layout required"
+R15,R15,2,ADC_MCLK,33R,Resistor_SMD:R_0603_1608Metric,prototype,"MCLK series damping, PCB layout required"
+C21,C21,1,D3V3,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Dedicated near oscillator
+C21,C21,2,DGND,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Dedicated near oscillator
+R16,R16,1,MCU_ADC_RESET,100k,Resistor_SMD:R_0603_1608Metric,prototype,PCM1804 /RST held low during startup until firmware releases it
+R16,R16,2,DGND,100k,Resistor_SMD:R_0603_1608Metric,prototype,PCM1804 /RST held low during startup until firmware releases it
+J3,J3,1,EXT_REF_CON,EXT_REF_TTL_3V3,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,placeholder,"BNC connector footprint placeholder, TTL 0..3.3V, no analog sine"
+J3,J3,2,AGND,EXT_REF_TTL_3V3,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,placeholder,"BNC connector footprint placeholder, TTL 0..3.3V, no analog sine"
+R17,R17,1,EXT_REF_CON,1k,Resistor_SMD:R_0603_1608Metric,prototype,"MCU digital capture input, pending clamp/ESD specification"
+R17,R17,2,MCU_EXT_REF,1k,Resistor_SMD:R_0603_1608Metric,prototype,"MCU digital capture input, pending clamp/ESD specification"
+R18,R18,1,MCU_EXT_REF,100k,Resistor_SMD:R_0603_1608Metric,prototype,logic pull-down
+R18,R18,2,DGND,100k,Resistor_SMD:R_0603_1608Metric,prototype,logic pull-down
+J4,J4,1,INT_REF_CON,INT_REF_TTL_3V3,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,placeholder,"BNC connector footprint placeholder, >=10k load only"
+J4,J4,2,AGND,INT_REF_TTL_3V3,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,placeholder,"BNC connector footprint placeholder, >=10k load only"
+R19,R19,1,MCU_INT_REF,100R,Resistor_SMD:R_0603_1608Metric,prototype,3.3V MCU output series resistor; do not drive 50-ohm loads
+R19,R19,2,INT_REF_CON,100R,Resistor_SMD:R_0603_1608Metric,prototype,3.3V MCU output series resistor; do not drive 50-ohm loads
+J5,J5,1,AVDD_P5,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,2,AVEE_N5,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,3,AVDD_ADC5,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,4,D3V3,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,5,AGND,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,6,DGND,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,7,MCU_I2S_BCK,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,8,MCU_I2S_LRCK,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,9,MCU_I2S_DATA,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,10,MCU_ADC_RESET,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,11,MCU_EXT_REF,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,12,MCU_INT_REF,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,13,ADC_OVFL,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
+J5,J5,14,ADC_OVFR,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified

@@ -1,0 +1,50 @@
+reference,value,footprint_candidate,status,engineering_note
+J1,MCT_KELVIN_4WAY,Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical,boundary,Physical connector / footprint unselected; external Kelvin wiring joins force and sense at detector
+J2,EXTERNAL_CURRENT_LIMITED_BIAS,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,boundary,External 0..3V supply MUST have independent <=50mA limit; no protection on board
+R1,22R,Resistor_SMD:R_0603_1608Metric,prototype,Source series protection; contributes ~0.60 nV/sqrt(Hz) at 300K
+R2,0R,Resistor_SMD:R_0603_1608Metric,prototype,"Sense return star / Kelvin link, layout critical"
+C1,4.7uF_10V_X7R,Capacitor_SMD:C_0805_2012Metric,prototype,Effective DC-bias-adjusted capacitance must be checked; X7R MLCC nonlinear with bias
+R3,47k,Resistor_SMD:R_0603_1608Metric,prototype,"DC bias return. With 4.7uF nominal, high pass ~0.72 Hz. High input resistance vs 200R source, but bipolar opamp DC input bias can saturate on high gain; verify at worst case"
+U1,OPA1612AID,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,prototype,SOIC-8 physical pinout verified against TI datasheet (OPA1612 not OPA1611)
+R4,1k,Resistor_SMD:R_0603_1608Metric,prototype,Non-inverting first stage feedback
+R5,20R,Resistor_SMD:R_0603_1608Metric,prototype,Fixed gain G=51
+R6,6.65R,Resistor_SMD:R_0603_1608Metric,prototype,When switch closed R5||R6=>G~201.4
+SW1,GAIN_SELECT_NO,Jumper:SolderJumper-2_P1.3mm_Open,prototype,Solder jumper closed selects G~201; open selects G51; physical design review required
+R7,330R,Resistor_SMD:R_0603_1608Metric,prototype,Anti-alias stage 1
+C2,15nF,Capacitor_SMD:C_0603_1608Metric,prototype,Pole ~32.2 kHz
+C3,10uF_10V_X7R,Capacitor_SMD:C_0805_2012Metric,prototype,"AC-couple to inverting ADC level shifter, at 2.5V common mode"
+R8,10k,Resistor_SMD:R_0603_1608Metric,prototype,Inverting driver Rin
+R9,10k,Resistor_SMD:R_0603_1608Metric,prototype,Inverting driver gain ~-1
+C4,470pF_C0G,Capacitor_SMD:C_0603_1608Metric,prototype,Second analog low pass pole ~33.9 kHz
+R10,47R,Resistor_SMD:R_0603_1608Metric,prototype,PCM1804 input drive resistor
+R11,47R,Resistor_SMD:R_0603_1608Metric,prototype,PCM1804 L+ input held to VCOML (single-sided differential ADC drive)
+C5,10nF_C0G,Capacitor_SMD:C_0603_1608Metric,prototype,ADC differential charge kickback filter; verify against TI input drive model
+R12,47R,Resistor_SMD:R_0603_1608Metric,prototype,"Quiet channel +, noise monitor"
+R13,47R,Resistor_SMD:R_0603_1608Metric,prototype,"Quiet channel -, noise monitor"
+C6,10nF_C0G,Capacitor_SMD:C_0603_1608Metric,prototype,
+U2,PCM1804DB,Package_SO:SSOP-28_5.3x10.2mm_P0.65mm,prototype,"48kHz fs master I2S: 12.288MHz MCLK, OSR2,1,0=0,1,1; FMT1,FMT0=0,1; BYPAS=0"
+C7,10uF_10V,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C8,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C9,10uF_10V,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C10,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C11,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C12,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C13,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C14,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C15,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C16,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C17,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C18,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C19,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+C20,10uF,Capacitor_SMD:C_0805_2012Metric,prototype,Place next to IC; PCM1804 analog and digital grounds must have controlled connection
+R14,0R,Resistor_SMD:R_0603_1608Metric,prototype,Single star point provisional; footprint placement controls actual return loop
+U3,ASEM1-12.288MHZ-L,Oscillator:Oscillator_SMD_Abracon_ASEM1-4Pin_3.2x2.5mm,footprint-review,Pin map 1=OE 2=GND 3=OUT 4=VDD; exact library footprint to be verified
+R15,33R,Resistor_SMD:R_0603_1608Metric,prototype,"MCLK series damping, PCB layout required"
+C21,100nF,Capacitor_SMD:C_0603_1608Metric,prototype,Dedicated near oscillator
+R16,100k,Resistor_SMD:R_0603_1608Metric,prototype,PCM1804 /RST held low during startup until firmware releases it
+J3,EXT_REF_TTL_3V3,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,placeholder,"BNC connector footprint placeholder, TTL 0..3.3V, no analog sine"
+R17,1k,Resistor_SMD:R_0603_1608Metric,prototype,"MCU digital capture input, pending clamp/ESD specification"
+R18,100k,Resistor_SMD:R_0603_1608Metric,prototype,logic pull-down
+J4,INT_REF_TTL_3V3,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,placeholder,"BNC connector footprint placeholder, >=10k load only"
+R19,100R,Resistor_SMD:R_0603_1608Metric,prototype,3.3V MCU output series resistor; do not drive 50-ohm loads
+J5,MCU_AND_POWER_INTERFACE,Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical,boundary,Interface pin numbering is electrical-only; connector orientation and actual STM32 pin mapping are NOT verified
